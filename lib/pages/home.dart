@@ -35,10 +35,11 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.background,
+          borderRadius: BorderRadius.circular(40),
           boxShadow: const [
             BoxShadow(
               blurRadius: 100,
-              color: Color.fromRGBO(50, 50, 50, 0.7),
+              color: Color.fromRGBO(150, 150, 150, 0.5),
             )
           ],
         ),
