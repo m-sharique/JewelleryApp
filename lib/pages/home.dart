@@ -21,17 +21,28 @@ class _HomePageState extends State<HomePage> {
     CollectionPageWidget(),
     ProfilePageWidget(),
   ];
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      appBar: AppBar(
-        title: const Text("JewellerApp"),
+      appBar: PreferredSize(
+        preferredSize: const Size(double.infinity, 50), // Set your desired height
+        child: Container( // This container should have the rounded border
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(20),top: Radius.zero),
+            color: Theme.of(context).colorScheme.surface,
+          ),
+          child: AppBar( // This is the standard AppBar widget
+            elevation: 0,
+            shadowColor: const Color.fromRGBO(150, 150, 150, 0.5),
+            centerTitle: true,
+            backgroundColor: Colors.transparent, // Transparent background
+            title: const Text('JewelryApp'),
+          ),
+        ),
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
+      body:  _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.background,
@@ -51,8 +62,8 @@ class _HomePageState extends State<HomePage> {
               hoverColor: Colors.grey[100]!,
               gap: 8,
               iconSize: 24,
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              duration: Duration(milliseconds: 400),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              duration: const Duration(milliseconds: 400),
               tabBackgroundColor: const Color.fromRGBO(255, 255, 255, 0.5),
               tabs: const [
                 GButton(icon: Icons.home_filled, text: "Home"),

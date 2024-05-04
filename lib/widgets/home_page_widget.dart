@@ -11,10 +11,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'Home',
-        style: TextStyle(fontSize: 24),
+    return Center(
+      child: Container(
+        constraints: const BoxConstraints.expand(),
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(40), bottom: Radius.circular(0)),
+        ),
+        child: const Center(
+          child: Text(
+            'Home',
+            style: TextStyle(fontSize: 24),
+          ),
+        ),
       ),
     );
   }

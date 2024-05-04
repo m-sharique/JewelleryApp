@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 // Import the object detector package
-import 'package:google_mlkit_object_detection/google_mlkit_object_detection.dart';
+// import 'package:google_mlkit_object_detection/google_mlkit_object_detection.dart';
 import 'package:image_picker/image_picker.dart';
 
 class SearchPageWidget extends StatefulWidget {
@@ -23,7 +23,13 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
   List<DetectedObject> detectedObjects = []; // Stores detected objects
 
   // Define a list of jewellery-related labels (adjust as needed)
-  final List<String> jewelleryLabels = ["ring", "bracelet", "necklace", "earring", "jewelry"];
+  final List<String> jewelleryLabels = [
+    "ring",
+    "bracelet",
+    "necklace",
+    "earring",
+    "jewelry"
+  ];
 
   Future<void> _pickImage() async {
     final imagePicker = ImagePicker();
@@ -54,15 +60,15 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
   }
 
   Future<void> _processImage(PickedFile image) async {
-    if (image == null) return;
-
     final inputImage = InputImage.fromFilePath(image.path);
 
     try {
-      final List<DetectedObject> objects = await objectDetector.processImage(inputImage);
+      final List<DetectedObject> objects =
+          await objectDetector.processImage(inputImage);
 
       if (objects.isNotEmpty) {
-        final allObjectNames = objects.map((object) => object.labels.first.text).join(', ');
+        final allObjectNames =
+            objects.map((object) => object.labels.first.text).join(', ');
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
@@ -87,8 +93,19 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Search'),
+      // Remove Scaffold's appBar property
+      appBar: PreferredSize(
+        preferredSize: const Size(double.infinity, 50),
+        child: Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+          ),
+          child: AppBar(
+            elevation: 0,
+            centerTitle: true,
+            title: const Text('Search'),
+          ),
+        ),
       ),
       body: Center(
         child: Column(
